@@ -87,6 +87,8 @@ CustomTile.prototype.getImage = function() {
  * you must provide a `crossOrigin` value if you are using the WebGL renderer or if you want to
  * access pixel data with the Canvas renderer.  See
  * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image} for more detail.
+ * @property {Array.<number>|undefined} [offset] Optional parameter which allows to define an offset
+ * for an ol.source.Zoomify. Default is [0, 0].
  * @property {module:ol/proj~ProjectionLike} [projection] Projection.
  * @property {boolean} [reprojectionErrorThreshold=0.5] Maximum allowed reprojection error (in pixels).
  * Higher values can increase reprojection performance, but decrease precision.
@@ -135,7 +137,10 @@ const Zoomify = function(opt_options) {
 
   const imageWidth = size[0];
   const imageHeight = size[1];
-  const extent = options.extent || [0, -size[1], size[0], 0];
+  const offset = options.offset !== undefined ?
+    options.offset :
+    [0, 0];
+  const extent = options.extent || [offset[0], offset[1] + -size[1], offset[0] + size[0], offset[1]];
   const tierSizeInTiles = [];
   const tileSize = options.tileSize || DEFAULT_TILE_SIZE;
   let tileSizeForTierSizeCalculation = tileSize;
