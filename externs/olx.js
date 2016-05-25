@@ -6696,6 +6696,7 @@ olx.source.CartoDBOptions.prototype.account;
  *     cacheSize: (number|undefined),
  *     crossOrigin: (null|string|undefined),
  *     logo: (string|olx.LogoOptions|undefined),
+ *     offset: (Array.<number>|undefined),
  *     projection: (ol.ProjectionLike|undefined),
  *     reprojectionErrorThreshold: (number|undefined),
  *     url: !string,
@@ -6740,6 +6741,12 @@ olx.source.ZoomifyOptions.prototype.crossOrigin;
  */
 olx.source.ZoomifyOptions.prototype.logo;
 
+/**
+ * Optional parameter which allows to define an offset for an ol.source.Zoomify. Default is [0, 0].
+ * @type {Array.<number>|undefined}
+ * @api
+ */
+olx.source.ZoomifyOptions.prototype.offset;
 
 /**
  * Projection.
