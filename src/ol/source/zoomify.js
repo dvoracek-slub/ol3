@@ -33,7 +33,10 @@ ol.source.Zoomify = function(opt_options) {
 
   var imageWidth = size[0];
   var imageHeight = size[1];
-  var extent = options.extent || [0, -size[1], size[0], 0];
+  var offset = options.offset !== undefined ?
+      options.offset :
+      [0, 0];
+  var extent = options.extent || [offset[0], offset[1] + -size[1], offset[0] + size[0], offset[1]];
   var tierSizeInTiles = [];
   var tileSize = options.tileSize || ol.DEFAULT_TILE_SIZE;
   var tileSizeForTierSizeCalculation = tileSize;
