@@ -26,11 +26,13 @@ ol.layer.Tile = function(opt_options) {
 
   delete baseOptions.preload;
   delete baseOptions.useInterimTilesOnError;
+  delete baseOptions.zDirection;
   ol.layer.Layer.call(this,  /** @type {olx.layer.LayerOptions} */ (baseOptions));
 
   this.setPreload(options.preload !== undefined ? options.preload : 0);
   this.setUseInterimTilesOnError(options.useInterimTilesOnError !== undefined ?
       options.useInterimTilesOnError : true);
+  this.setZDirection(options.zDirection);
 };
 ol.inherits(ol.layer.Tile, ol.layer.Layer);
 
@@ -95,5 +97,16 @@ ol.layer.Tile.prototype.setUseInterimTilesOnError = function(useInterimTilesOnEr
  */
 ol.layer.Tile.Property = {
   PRELOAD: 'preload',
-  USE_INTERIM_TILES_ON_ERROR: 'useInterimTilesOnError'
+  USE_INTERIM_TILES_ON_ERROR: 'useInterimTilesOnError',
+  ZDIRECTION: 'zDirection'
+};
+
+
+ol.layer.Tile.prototype.getZDirection = function() {
+  return this.get(ol.layer.Tile.Property.ZDIRECTION);
+};
+
+
+ol.layer.Tile.prototype.setZDirection = function(zDirection) {
+  this.set(ol.layer.Tile.Property.ZDIRECTION, zDirection);
 };
