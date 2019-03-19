@@ -79,7 +79,7 @@ const CanvasTileLayerRenderer = function(tileLayer) {
    * @protected
    * @type {number}
    */
-  this.zDirection = 0;
+  this.zDirection = tileLayer.getZDirection() !== undefined ? tileLayer.getZDirection() : 0;
 
 };
 
