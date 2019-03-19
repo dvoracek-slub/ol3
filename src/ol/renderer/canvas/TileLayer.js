@@ -84,7 +84,7 @@ class CanvasTileLayerRenderer extends IntermediateCanvasRenderer {
      * @protected
      * @type {number}
      */
-    this.zDirection = 0;
+    this.zDirection = tileLayer.getZDirection() !== undefined ? tileLayer.getZDirection() : 0;
 
   }
 

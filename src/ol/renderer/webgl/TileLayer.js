@@ -92,6 +92,8 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
      */
     this.tmpSize_ = [0, 0];
 
+    this.zDirection = tileLayer.getZDirection() !== undefined ? tileLayer.getZDirection() : 0;
+
   }
 
   /**
@@ -153,7 +155,7 @@ class WebGLTileLayerRenderer extends WebGLLayerRenderer {
     const tileLayer = /** @type {module:ol/layer/Tile} */ (this.getLayer());
     const tileSource = tileLayer.getSource();
     const tileGrid = tileSource.getTileGridForProjection(projection);
-    const z = tileGrid.getZForResolution(viewState.resolution);
+    const z = tileGrid.getZForResolution(viewState.resolution, this.zDirection);
     const tileResolution = tileGrid.getResolution(z);
 
     const tilePixelSize =
