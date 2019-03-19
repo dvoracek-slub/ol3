@@ -55,6 +55,8 @@ ol.renderer.dom.TileLayer = function(tileLayer) {
    */
   this.tileLayerZs_ = {};
 
+  this.zDirection = tileLayer.getZDirection() !== undefined ? tileLayer.getZDirection() : 0;
+
 };
 ol.inherits(ol.renderer.dom.TileLayer, ol.renderer.dom.Layer);
 
@@ -91,7 +93,7 @@ ol.renderer.dom.TileLayer.prototype.prepareFrame = function(frameState, layerSta
   var tileSource = tileLayer.getSource();
   var tileGrid = tileSource.getTileGridForProjection(projection);
   var tileGutter = tileSource.getGutter(projection);
-  var z = tileGrid.getZForResolution(viewState.resolution);
+  var z = tileGrid.getZForResolution(viewState.resolution, this.zDirection);
   var tileResolution = tileGrid.getResolution(z);
   var center = viewState.center;
   var extent;
