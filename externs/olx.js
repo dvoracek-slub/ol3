@@ -4101,6 +4101,7 @@ olx.layer.ImageOptions.prototype.zIndex;
  *     minResolution: (number|undefined),
  *     maxResolution: (number|undefined),
  *     useInterimTilesOnError: (boolean|undefined),
+ *     zDirection: (number|undefined),
  *     zIndex: (number|undefined)}}
  */
 olx.layer.TileOptions;
@@ -4181,6 +4182,17 @@ olx.layer.TileOptions.prototype.maxResolution;
  * @api
  */
 olx.layer.TileOptions.prototype.useInterimTilesOnError;
+
+
+/**
+ * Indicate which resolution should be used by a renderer if the views resolution
+ * does not match any resolution of the tile source.
+ * If 0, the nearest resolution will be used. If 1, the nearest lower resolution
+ * will be used. If -1, the nearest higher resolution will be used.
+ * @type {number|undefined}
+ * @api
+ */
+olx.layer.TileOptions.prototype.zDirection;
 
 
 /**
