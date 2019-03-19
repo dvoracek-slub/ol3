@@ -58,7 +58,7 @@ ol.renderer.canvas.TileLayer = function(tileLayer) {
    * @protected
    * @type {number}
    */
-  this.zDirection = 0;
+  this.zDirection = tileLayer.getZDirection() !== undefined ? tileLayer.getZDirection() : 0;
 
 };
 ol.inherits(ol.renderer.canvas.TileLayer, ol.renderer.canvas.Layer);

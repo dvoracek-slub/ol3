@@ -80,6 +80,8 @@ ol.renderer.webgl.TileLayer = function(mapRenderer, tileLayer) {
    */
   this.tmpSize_ = [0, 0];
 
+  this.zDirection = tileLayer.getZDirection() !== undefined ? tileLayer.getZDirection() : 0;
+
 };
 ol.inherits(ol.renderer.webgl.TileLayer, ol.renderer.webgl.Layer);
 
@@ -153,7 +155,7 @@ ol.renderer.webgl.TileLayer.prototype.prepareFrame = function(frameState, layerS
   var tileLayer = /** @type {ol.layer.Tile} */ (this.getLayer());
   var tileSource = tileLayer.getSource();
   var tileGrid = tileSource.getTileGridForProjection(projection);
-  var z = tileGrid.getZForResolution(viewState.resolution);
+  var z = tileGrid.getZForResolution(viewState.resolution, this.zDirection);
   var tileResolution = tileGrid.getResolution(z);
 
   var tilePixelSize =
