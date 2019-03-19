@@ -20,6 +20,10 @@ import {assign} from '../obj.js';
  * visible.
  * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
  * be visible.
+ * @property {number|undefined} [zDirection] Indicate which resolution should be used by a renderer if the views resolution
+ * does not match any resolution of the tile source.
+ * If 0, the nearest resolution will be used. If 1, the nearest lower resolution
+ * will be used. If -1, the nearest higher resolution will be used.
  * @property {number} [preload=0] Preload. Load low-resolution tiles up to `preload` levels. `0`
  * means no preloading.
  * @property {module:ol/source/Tile} [source] Source for this layer.
@@ -52,11 +56,13 @@ const TileLayer = function(opt_options) {
 
   delete baseOptions.preload;
   delete baseOptions.useInterimTilesOnError;
+  delete baseOptions.zDirection;
   Layer.call(this,  /** @type {module:ol/layer/Layer~Options} */ (baseOptions));
 
   this.setPreload(options.preload !== undefined ? options.preload : 0);
   this.setUseInterimTilesOnError(options.useInterimTilesOnError !== undefined ?
     options.useInterimTilesOnError : true);
+  this.setZDirection(options.zDirection);
 
   /**
    * The layer type.
@@ -121,4 +127,16 @@ TileLayer.prototype.getUseInterimTilesOnError = function() {
 TileLayer.prototype.setUseInterimTilesOnError = function(useInterimTilesOnError) {
   this.set(TileProperty.USE_INTERIM_TILES_ON_ERROR, useInterimTilesOnError);
 };
+
+
+TileLayer.prototype.getZDirection = function() {
+  return this.get(TileProperty.ZDIRECTION);
+};
+
+
+TileLayer.prototype.setZDirection = function(zDirection) {
+  this.set(TileProperty.ZDIRECTION, zDirection);
+};
+
+
 export default TileLayer;
