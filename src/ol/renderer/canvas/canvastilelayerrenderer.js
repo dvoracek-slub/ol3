@@ -59,7 +59,7 @@ ol.renderer.canvas.TileLayer = function(tileLayer) {
    * @protected
    * @type {number}
    */
-  this.zDirection = 0;
+  this.zDirection = tileLayer.getZDirection() !== undefined ? tileLayer.getZDirection() : 0;
 
 };
 ol.inherits(ol.renderer.canvas.TileLayer, ol.renderer.canvas.Layer);
@@ -243,7 +243,7 @@ ol.renderer.canvas.TileLayer.prototype.renderTileImages = function(context, fram
   if (rotation || hasRenderListeners) {
     renderContext = this.context;
     var renderCanvas = renderContext.canvas;
-    var drawZ = tileGrid.getZForResolution(resolution);
+    var drawZ = tileGrid.getZForResolution(resolution, this.zDirection);
     var drawTileSize = source.getTilePixelSize(drawZ, pixelRatio, projection);
     var tileSize = ol.size.toSize(tileGrid.getTileSize(drawZ));
     drawScale = drawTileSize[0] / tileSize[0];
