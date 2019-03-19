@@ -5,5 +5,6 @@ goog.provide('ol.layer.TileProperty');
  */
 ol.layer.TileProperty = {
   PRELOAD: 'preload',
-  USE_INTERIM_TILES_ON_ERROR: 'useInterimTilesOnError'
+  USE_INTERIM_TILES_ON_ERROR: 'useInterimTilesOnError',
+  ZDIRECTION: 'zDirection'
 };
